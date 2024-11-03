@@ -1,11 +1,10 @@
 ﻿using FluentAssertions;
-using Xunit.Sdk;
 
-namespace FluentTesting.Sample;
+namespace FluentTesting.Sample.Calculator.Tests;
 
 public class CalculatorTestSteps
 {
-    private Calculator.Calculator _calculator = null!;
+    private Sample.Calculator.Calculator _calculator = null!;
     private double _calculatorResult;
     private Exception? _exception;
 

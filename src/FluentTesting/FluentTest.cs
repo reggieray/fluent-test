@@ -32,6 +32,11 @@ public class FluentTest<T>(T subject)
         _whenAsyncActions.Add(() => actionAsync(subject));
         return this;
     }
+    
+    public FluentTest<T> When(string stepMsg)
+    {
+        return this;
+    }
 
     public FluentTest<T> Then(Action<T> assertion)
     {
@@ -42,6 +47,11 @@ public class FluentTest<T>(T subject)
     public FluentTest<T> Then(Func<T, Task> assertionAsync)
     {
         _thenAsyncActions.Add(() => assertionAsync(subject));
+        return this;
+    }
+    
+    public FluentTest<T> Then(string stepMsg)
+    {
         return this;
     }
 
@@ -78,6 +88,11 @@ public class FluentTest<T>(T subject)
         }
         
         _givenAsyncActions.Add(() => additionalActionAsync(subject));
+        return this;
+    }
+    
+    public FluentTest<T> And(string stepMsg)
+    {
         return this;
     }
     

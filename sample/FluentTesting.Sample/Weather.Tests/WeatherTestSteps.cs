@@ -1,12 +1,11 @@
 ﻿using System.Net;
 using System.Text.Json;
 using FluentAssertions;
-using FluentTesting.Sample.Weather;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Moq.Protected;
 
-namespace FluentTesting.Sample;
+namespace FluentTesting.Sample.Weather.Tests;
 
 public class WeatherTestSteps
 {

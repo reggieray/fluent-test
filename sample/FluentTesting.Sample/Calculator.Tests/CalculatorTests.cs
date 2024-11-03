@@ -1,6 +1,4 @@
-﻿using FluentAssertions;
-
-namespace FluentTesting.Sample;
+﻿namespace FluentTesting.Sample.Calculator.Tests;
 
 public class CalculatorTests
 {

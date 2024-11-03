@@ -1,4 +1,4 @@
-﻿namespace FluentTesting.Sample;
+﻿namespace FluentTesting.Sample.Weather.Tests;
 
 public class WeatherTests
 {

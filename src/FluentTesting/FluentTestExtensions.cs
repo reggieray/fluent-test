@@ -12,5 +12,8 @@ public static class FluentTestExtensions
         return new FluentTest<T>(subject).Given(setupAsync);
     }
     
-   
+    public static FluentTest<T> Given<T>(this T subject, string stepMsg)
+    {
+        return new FluentTest<T>(subject);
+    }
 }
