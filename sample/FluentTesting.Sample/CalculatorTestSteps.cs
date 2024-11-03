@@ -5,7 +5,7 @@ namespace FluentTesting.Sample;
 
 public class CalculatorTestSteps
 {
-    private Calculator.Calculator _calculator = new();
+    private Calculator.Calculator _calculator = null!;
     private double _calculatorResult;
     private Exception? _exception;
 
@@ -57,10 +57,5 @@ public class CalculatorTestSteps
     public void TheNumberShouldEqual(int expected)
     {
         _calculatorResult.Should().Be(expected);
-    }
-
-    public async Task AfterALittleTime()
-    {
-        await Task.Delay(3);
     }
 }
