@@ -8,6 +8,8 @@ This library is intentionally minimal and lightweight, with only a few core meth
 
 ## Basic Example
 
+There are two approaches available, you could have a dedicated class that defines steps of your test like below. 
+
 ```csharp
 public class CalculatorTests
 {
@@ -25,7 +27,7 @@ public class CalculatorTests
 }
 ```
 
-The recommend approach is to use a class to wrap your test steps like the example given below:
+The `CalculatorTestSteps` class is used to perform setup, execution and verification of the subject under test. 
 
 ```csharp
 public class CalculatorTestSteps
@@ -49,3 +51,44 @@ public class CalculatorTestSteps
     }
 }
 ```
+
+The second approach is you can create methods within the test class itself like the example below.
+
+```csharp
+public class PrimeServiceTests
+{
+    private Sample.PrimeService.PrimeService? _primeService;
+    private bool _primeResult;
+    
+    [Theory]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(5)]
+    [InlineData(7)]
+    public async Task ShouldReturnTrueIfPrimeNumber(int value)
+    {
+        await this
+            .Given(x => x.APrimeService())
+            .When(x => x.IsPrimeIsCalledFor(value))
+            .Then(x => x.TrueIsReturned())
+            .RunAsync();
+    }
+    
+    private void TrueIsReturned()
+    {
+        _primeResult.Should().BeTrue();
+    }
+
+    private void IsPrimeIsCalledFor(int value)
+    {
+        _primeResult = Sample.PrimeService.PrimeService.IsPrime(value);
+    }
+
+    private void APrimeService()
+    {
+        _primeService = new Sample.PrimeService.PrimeService();
+    }
+}
+```
+
+Both options are valid depending on your scenario.
