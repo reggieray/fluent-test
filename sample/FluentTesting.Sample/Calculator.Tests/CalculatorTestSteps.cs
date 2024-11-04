@@ -8,13 +8,13 @@ public class CalculatorTestSteps
     private double _calculatorResult;
     private Exception? _exception;
 
-    public void ANewCalculator()
+    public void ACalculator()
     {
         _calculator = new();
         _calculatorResult = 0;
     }
     
-    public async Task ANewCalculatorAsync()
+    public async Task ACalculatorAsync()
     {
         await Task.Delay(1);
         _calculator = new();

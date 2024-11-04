@@ -11,8 +11,8 @@ public class CalculatorTests
     public async Task ShouldAdd(int a, int b, int expected)
     {
         await _testSteps
-            .Given(x => x.ANewCalculator())
-            .When(x => x.TwoNumbersAreAddedAsync(a, b))
+            .Given(x => x.ACalculator())
+            .When(x => x.TwoNumbersAreAddedAsync(a, b)) // demonstrates async and no async usage 
             .Then(x => x.TheNumberShouldEqual(expected))
             .RunAsync();
     }
@@ -24,7 +24,7 @@ public class CalculatorTests
     public async Task ShouldMultiply(int a, int b, int expected)
     {
         await _testSteps
-            .Given(x => x.ANewCalculator())
+            .Given(x => x.ACalculator())
             .When(x => x.TwoNumbersMultiplied(a, b))
             .Then(x => x.TheNumberShouldEqual(expected))
             .RunAsync();
@@ -37,7 +37,7 @@ public class CalculatorTests
     public async Task ShouldDivide(int a, int b, int expected)
     {
         await _testSteps
-            .Given(x => x.ANewCalculator())
+            .Given(x => x.ACalculator())
             .When(x => x.TwoNumbersDivided(a, b))
             .Then(x => x.TheNumberShouldEqual(expected))
             .RunAsync();
@@ -47,7 +47,7 @@ public class CalculatorTests
     public async Task ShouldThrowDivideByZeroException()
     {
         await _testSteps
-            .Given(x => x.ANewCalculator())
+            .Given(x => x.ACalculator())
             .When(x => x.DivideNumberByZero(80))
             .Then(x => x.DivideByZeroExceptionIsThrown())
             .RunAsync();
@@ -60,7 +60,7 @@ public class CalculatorTests
     public async Task ShouldSubtract(int a, int b, int expected)
     {
         await _testSteps
-            .Given(x => x.ANewCalculatorAsync())
+            .Given(x => x.ACalculatorAsync()) // demonstrates async and no async usage 
             .When(x => x.TwoNumbersSubtracted(a, b))
             .Then(x => x.TheNumberShouldEqual(expected))
             .RunAsync();
