@@ -4,6 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageVersion>0.0.1</PackageVersion>
+    <Version>0.0.1</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>FluentTesting is a lightweight C# library for writing unit tests with a clear Given-When-Then syntax.</Description>
+    <PackageProjectUrl>https://github.com/reggieray/fluent-test</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/reggieray/fluent-test</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

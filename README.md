@@ -4,11 +4,37 @@ A simple and expressive tool for writing unit tests in C# using a fluent API. It
 
 This library is intentionally minimal and lightweight, with only a few core methods and no external dependencies. This simplicity makes it easy to extend or adapt to your needs, and you’re free to copy or modify the code as you wish. The goal is to support flexibility without locking you into any specific framework or toolset.
 
+This project was inspired by [BDDfy](https://github.com/TestStack/TestStack.BDDfy) and [BDTest](https://github.com/thomhurst/BDTest), two libraries I'm a fan of and regularly use. While these libraries are fantastic for fluent Given-When-Then API syntax, I found myself searching for a simpler option as I didn't want any extra customizations or the need to have HTML reports. I purely wanted something just to organize my test code so it was easier to read and understand.
+
+# Installation
+
+To add this library to your project, you can install it via NuGet with the following command:
+
+```bash
+dotnet add package FluentTesting
+```
+
+Alternatively, as this package only consists of one class plus a few extension methods, you can copy the `FluentTest` class code directly into your project and start using it immediately.
+
+# Features
+
+- Fluent Syntax: Provides a clear Given-When-Then structure that makes tests highly readable.
+- Sync and Async Support: Supports both synchronous and asynchronous test steps, making it flexible for different scenarios.
+- Minimal and Lightweight: With no external dependencies, it’s easy to integrate and adapt without extra configuration.
+- Customizable: Allows flexibility to add your own methods and steps as needed.
+
 # Usage
 
 ## Basic Example
 
-There are two approaches available, you could have a dedicated class that defines steps of your test like below. 
+There are two approaches available:
+
+1. Using a Dedicated Class for Test Steps
+2. Defining Steps Inline in the Test Class
+
+#### Option 1: Dedicated Test Steps Class
+
+This approach allows you to create a dedicated class, such as `CalculatorTestSteps`, that defines the setup, execution, and verification steps for your test.
 
 ```csharp
 public class CalculatorTests
@@ -19,7 +45,7 @@ public class CalculatorTests
     public async Task ShouldMultiply()
     {
         await _testSteps
-            .Given(x => x.ANewCalculator())
+            .Given(x => x.ACalculator())
             .When(x => x.TwoNumbersMultiplied(10, 10))
             .Then(x => x.TheNumberShouldEqual(100))
             .RunAsync();
@@ -27,7 +53,7 @@ public class CalculatorTests
 }
 ```
 
-The `CalculatorTestSteps` class is used to perform setup, execution and verification of the subject under test. 
+Here, the `CalculatorTestSteps` class manages the test steps in a modular way:
 
 ```csharp
 public class CalculatorTestSteps
@@ -35,7 +61,7 @@ public class CalculatorTestSteps
     private Calculator _calculator = null!;
     private double _calculatorResult
     
-    public void ANewCalculator()
+    public void ACalculator()
     {
         _calculator = new();
     }
@@ -52,7 +78,9 @@ public class CalculatorTestSteps
 }
 ```
 
-The second approach is you can create methods within the test class itself like the example below.
+#### Option 2: Inline Test Steps
+
+Alternatively, you can define the `Given`, `When`, and `Then` steps directly within the test class itself:
 
 ```csharp
 public class PrimeServiceTests
@@ -91,4 +119,4 @@ public class PrimeServiceTests
 }
 ```
 
-Both options are valid depending on your scenario.
+Both approaches are valid and can be chosen depending on the complexity of your tests and your preferences.
