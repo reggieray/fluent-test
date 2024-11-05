@@ -7,9 +7,15 @@
     <PackageVersion>0.0.1</PackageVersion>
     <Version>0.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>Apache-2.0+</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>FluentTesting is a lightweight C# library for writing unit tests with a clear Given-When-Then syntax.</Description>
     <PackageProjectUrl>https://github.com/reggieray/fluent-test</PackageProjectUrl>
     <RepositoryUrl>https://github.com/reggieray/fluent-test</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>
