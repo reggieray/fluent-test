@@ -123,6 +123,7 @@ public class FluentTestTests
             .When("Intermediate step description")
             .When(r => r.Record("When"))
             .Then("Final step description")
+            .And("And then")
             .Then(r => r.Record("Then"));
 
         // Act
@@ -140,5 +141,50 @@ public class FluentTestTests
 
         // Assert
         Assert.Null(exception);
+    }
+
+    [Fact]
+    public async Task AndAsync_AppendsToTheCorrectPhase_GivenPhase()
+    {
+        // Arrange
+        _fluentTest
+            .Given(r => r.Record("Given"))
+            .And(r => r.RecordAsync("AndGivenAsync"));
+
+        // Act
+        await _fluentTest.RunAsync();
+
+        // Assert
+        Assert.Equal(["Given", "AndGivenAsync"], _recorder.Steps);
+    }
+
+    [Fact]
+    public async Task AndAsync_AppendsToTheCorrectPhase_WhenPhase()
+    {
+        // Arrange
+        _fluentTest
+            .When(r => r.Record("When"))
+            .And(r => r.RecordAsync("AndWhenAsync"));
+
+        // Act
+        await _fluentTest.RunAsync();
+
+        // Assert
+        Assert.Equal(["When", "AndWhenAsync"], _recorder.Steps);
+    }
+
+    [Fact]
+    public async Task AndAsync_AppendsToTheCorrectPhase_ThenPhase()
+    {
+        // Arrange
+        _fluentTest
+            .Then(r => r.Record("Then"))
+            .And(r => r.RecordAsync("AndThenAsync"));
+
+        // Act
+        await _fluentTest.RunAsync();
+
+        // Assert
+        Assert.Equal(["Then", "AndThenAsync"], _recorder.Steps);
     }
 }
